@@ -27,6 +27,7 @@ io.engine.on("connection_error", console.log)
 
 console.log(`Listening for connections`)
 io.on(`connection`, (socket) => {
+    console.log(`connection`)
     ioRouter(socket)
 })
 
