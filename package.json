@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "node-turn": "^0.0.6",
     "socket.io": "^4.7.5"
   }
 }

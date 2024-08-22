@@ -2,6 +2,7 @@ const http = require(`http`)
 const fs = require(`fs`)
 const path = require(`path`)
 const { Server } = require(`socket.io`)
+const Turn = require(`node-turn`)
 
 const { parseUrlFromRequest, parseCookiesFromRequest, parseRoomFromSocket, parseDataUriFromFile } = require(`./lib/parsing`)
 const ioRouter = require(`./routing/iorouter.js`)
@@ -22,6 +23,13 @@ const io = new Server(server, {
     }
 })
 
+const turnServer = new Turn({
+    authMech: `long-term`,
+    credentials: {
+        turnLTKSuite: `--53MxS9gA--`
+    }
+})
+
 // debug setting
 io.engine.on("connection_error", console.log)
 
@@ -32,3 +40,5 @@ io.on(`connection`, (socket) => {
 })
 
 server.listen(PORT, () => console.log(`Listening on ${PORT}`))
+turnServer.start()
+console.log(`Started turn server`)
