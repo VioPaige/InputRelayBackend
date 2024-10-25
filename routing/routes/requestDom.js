@@ -5,6 +5,7 @@ module.exports = {
         if (!data.key || !data.peerjscode) return
 
         let success = connectionManager.makeConnection(data.key, socket)
+        // instead of connection status and domconnected, fire a confirmation event with files info to dom, if they confirm fire connectionstatus and domconnected
         socket.emit(`connectionStatus`, { success })
         
         if (!success) return
