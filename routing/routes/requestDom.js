@@ -2,10 +2,12 @@ const connectionManager = require(`../../lib/connectionManager.js`)
 
 module.exports = {
     handler: (socket, data) => {
-        if (!data.key || !data.peerjscode) return
+        console.log(`requestDom ${data.key}`)
+
+        // if (!data.key || !data.peerjscode) return
+        if (!data.key) return // the !data.peerjscode check is required for inputrelay, but not for fileportal, need to pass the app name probably
 
         let success = connectionManager.makeConnection(data.key, socket)
-        // instead of connection status and domconnected, fire a confirmation event with files info to dom, if they confirm fire connectionstatus and domconnected
         socket.emit(`connectionStatus`, { success })
         
         if (!success) return
