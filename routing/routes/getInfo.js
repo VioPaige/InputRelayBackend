@@ -8,6 +8,7 @@ module.exports = {
         if (!connection) return
 
         connectionManager.waitingForInfo[data.connectionCode] = socket
+        console.log(`getinfo got for ${data.connectionCode}`)
         connection.controlled.emit(`getInfo`, {})
     }
 }

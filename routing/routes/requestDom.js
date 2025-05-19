@@ -11,6 +11,9 @@ module.exports = {
         socket.emit(`connectionStatus`, { success })
         
         if (!success) return
+        console.log(connectionManager.connections[data.key].controlled.id, data)
+        console.log(`getinfo got for ${data.key}`)
+        connectionManager.connections[data.key].controlled.emit(`domConnected`, {})
         connectionManager.connections[data.key].controlled.emit(`domConnected`, { key: data.key, peerjscode: data.peerjscode, success })
     }
 }

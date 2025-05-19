@@ -11,6 +11,8 @@ const PORT = 3003
 const server = http.createServer((req, res) => {
     req.parsedUrl = parseUrlFromRequest(req)
     req.cookies = parseCookiesFromRequest(req)
+
+    res.end(JSON.stringify({ alive: true, success: true }))
 })
 
 const io = new Server(server, {
